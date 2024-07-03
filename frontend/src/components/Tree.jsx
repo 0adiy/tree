@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import useTreeStore from "../../store/useTreeStore";
+import useTreeStore from "@/store/useTreeStore";
 import TreeNode from "./TreeNode";
 
 export default function Tree() {

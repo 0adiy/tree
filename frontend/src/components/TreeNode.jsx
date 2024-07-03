@@ -1,6 +1,7 @@
 "use client";
 
-import useTreeStore from "../../store/useTreeStore";
+import { memo } from "react";
+import useTreeStore from "@/store/useTreeStore";
 
 const colors = [
   "bg-gray-800",
@@ -21,7 +22,7 @@ function rightChildat(index) {
   return x * 2;
 }
 
-export default function TreeNode({
+function TreeNode({
   at,
   onClick,
   onMouseEnter,
@@ -45,7 +46,7 @@ export default function TreeNode({
   return (
     treeData.length > at && (
       <div
-        className={`flex flex-col items-center`}
+        className={`flex items-center`}
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -53,14 +54,14 @@ export default function TreeNode({
       >
         {/* current node */}
         <div
-          className={`h-8 p-1 text-center  text-white rounded-full grid place-items-center m-2 ${
+          className={`h-8 p-1 text-center text-white rounded-full grid place-items-center m-2  btn ${
             colors[depth % colors.length]
           }`}
         >
           {treeData[at]}
         </div>
         {/* level below the current node */}
-        <div className='flex justify-center'>
+        <div className='flex flex-col justify-center'>
           <TreeNode at={leftChildat(at)} depth={depth + 1} />
           <TreeNode at={rightChildat(at)} depth={depth + 1} />
         </div>
@@ -68,3 +69,7 @@ export default function TreeNode({
     )
   );
 }
+
+const TreeNodeMemo = memo(TreeNode);
+
+export default TreeNodeMemo;
