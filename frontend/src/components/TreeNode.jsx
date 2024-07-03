@@ -44,29 +44,44 @@ function TreeNode({
   };
 
   return (
-    treeData.length > at && (
-      <div
-        className={`flex items-center`}
-        onClick={handleClick}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        {...props}
-      >
-        {/* current node */}
+    <div
+      className='flex items-stretch'
+      onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      {...props}
+    >
+      {/* current node */}
+      <div className='flex items-center justify-center'>
         <div
-          className={`h-8 p-1 text-center text-white rounded-full grid place-items-center m-2  btn ${
+          className={`text-center text-white rounded-full grid place-items-center m-2 btn btn-circle ${
             colors[depth % colors.length]
           }`}
         >
           {treeData[at]}
         </div>
-        {/* level below the current node */}
-        <div className='flex flex-col justify-center'>
-          <TreeNode at={leftChildat(at)} depth={depth + 1} />
-          <TreeNode at={rightChildat(at)} depth={depth + 1} />
-        </div>
       </div>
-    )
+
+      {/* edges */}
+      <div className='flex flex-col justify-center'>
+        {leftChildat(at) < treeData.length && (
+          <div className='flex-1 bg-red-500 min-h-4 w-2 [clip-path:polygon(4px_100%,_0_100%,_0_50%,_100%_50%,_100%_calc(50%+4px),_4px_calc(50%+4px))]'></div>
+        )}
+        {rightChildat(at) < treeData.length && (
+          <div className='flex-1 bg-blue-500 min-h-4 w-2 [clip-path:polygon(4px_0,_0_0,_0_50%,_100%_50%,_100%_calc(50%_-_4px),_4px_calc(50%_-_4px))]'></div>
+        )}
+      </div>
+
+      {/* level below the current node */}
+      <div className='flex flex-col justify-center'>
+        {leftChildat(at) < treeData.length && (
+          <TreeNode at={leftChildat(at)} depth={depth + 1} />
+        )}
+        {rightChildat(at) < treeData.length && (
+          <TreeNode at={rightChildat(at)} depth={depth + 1} />
+        )}
+      </div>
+    </div>
   );
 }
 

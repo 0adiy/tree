@@ -25,7 +25,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 
-  width: fit-content;
+  /* width: fit-content; */
 }
 
 @layer utilities {
