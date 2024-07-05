@@ -15,7 +15,6 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const authDetails = auth();
-  console.log("authDetails", authDetails);
   const user = await currentUser();
 
   return (
@@ -29,7 +28,9 @@ export default async function RootLayout({ children }) {
             </SignedOut>
             <SignedIn>
               <UserButton />
-              {user?.fullName || user?.emailAddresses[0].emailAddress}
+              <span>
+                {user?.fullName || user?.emailAddresses[0].emailAddress}
+              </span>
             </SignedIn>
           </nav>
           {children}
