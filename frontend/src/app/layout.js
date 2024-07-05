@@ -15,6 +15,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const authDetails = auth();
+  console.log("authDetails", authDetails);
   const user = await currentUser();
 
   return (
@@ -24,7 +25,7 @@ export default async function RootLayout({ children }) {
           <nav className='flex gap-2 items-center justify-end p-4 sticky top-0 w-full bg-base-100 z-[2]'>
             <span className='mr-auto'>Tree Visualizer</span>
             <SignedOut>
-              <SignInButton />
+              <SignInButton className='btn btn-primary' />
             </SignedOut>
             <SignedIn>
               <UserButton />
