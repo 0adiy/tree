@@ -3,6 +3,7 @@
 import useTreeStore from "@/store/useTreeStore";
 import TreeNode from "./TreeNode";
 import { useEffect } from "react";
+import EditModal from "@/components/EditModal";
 
 export default function Tree({ setTree }) {
   const { treeData, setTreeData } = useTreeStore();
@@ -40,6 +41,7 @@ export default function Tree({ setTree }) {
       <button className='btn btn-accent' onClick={handleLoad}>
         Load
       </button>
+      <EditModal />
       <TreeNode at={0} depth={0} />
     </div>
   );

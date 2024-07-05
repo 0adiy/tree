@@ -20,7 +20,7 @@ export default async function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang='en'>
-        <body>
+        <body className='bg-base-300 flex flex-col min-h-screen'>
           <nav className='flex gap-2 items-center justify-end p-4 sticky top-0 w-full bg-base-100 z-[2]'>
             <span className='mr-auto'>Tree Visualizer</span>
             <SignedOut>

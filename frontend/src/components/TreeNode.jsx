@@ -22,44 +22,37 @@ function rightChildat(index) {
   return x * 2;
 }
 
-function TreeNode({
-  at,
-  onClick,
-  onMouseEnter,
-  onMouseLeave,
-  depth,
-  ...props
-}) {
-  const { treeData } = useTreeStore();
+function TreeNode({ at, depth, ...props }) {
+  const { treeData, setCurrentNodeAt, openEditModal } = useTreeStore();
+
   const handleClick = () => {
-    onClick && onClick(data);
-  };
-
-  const handleMouseEnter = () => {
-    onMouseEnter && onMouseEnter(data);
-  };
-
-  const handleMouseLeave = () => {
-    onMouseLeave && onMouseLeave(data);
+    console.log(at);
+    setCurrentNodeAt(at);
+    openEditModal();
   };
 
   return (
-    <div
-      className='flex items-stretch'
-      onClick={handleClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      {...props}
-    >
+    <div className='flex items-stretch' {...props}>
       {/* current node */}
       <div className='flex items-center justify-center'>
-        <div
-          className={`text-center text-white rounded-full grid place-items-center m-2 btn btn-circle ${
-            colors[depth % colors.length]
-          }`}
-        >
-          {treeData[at]}
-        </div>
+        {leftChildat(at) < treeData.length ? (
+          <div
+            className={`text-center text-white rounded-full grid place-items-center m-2 btn-circle ${
+              colors[depth % colors.length]
+            }`}
+          >
+            {treeData[at]}
+          </div>
+        ) : (
+          <button
+            onClick={handleClick}
+            className={`text-center text-white rounded-full grid place-items-center m-2 btn-circle btn ${
+              colors[depth % colors.length]
+            } `}
+          >
+            {treeData[at]}
+          </button>
+        )}
       </div>
 
       {/* edges */}
