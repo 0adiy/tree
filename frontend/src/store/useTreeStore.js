@@ -1,7 +1,8 @@
 import { create } from "zustand";
 
-let intialTreeArray = [];
-for (let i = 1; i <= 100; i++) intialTreeArray.push(1);
+// NOTE: this is for testing
+// let intialTreeArray = [];
+// for (let i = 1; i <= 10; i++) intialTreeArray.push(1);
 
 // utils
 function getParentAt(index) {
@@ -9,7 +10,7 @@ function getParentAt(index) {
 }
 
 const useTreeStore = create((set, get) => ({
-  treeData: intialTreeArray,
+  treeData: [],
   setTreeData: data => set({ treeData: data }),
   addNode: data => set({ treeData: [...treeData, data] }),
   clearTree: () => set({ treeData: [] }),
@@ -32,11 +33,9 @@ const useTreeStore = create((set, get) => ({
 
     let i = curr;
     while (i >= 0) {
-      console.log(i);
       newTreeData[i] = enteredValue;
       i = getParentAt(i);
     }
-    console.log(newTreeData);
     set({ treeData: newTreeData });
   },
 }));

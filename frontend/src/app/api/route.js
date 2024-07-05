@@ -20,5 +20,6 @@ export async function POST(request) {
 export async function GET(request) {
   const { userId } = auth();
   const res = await fetch(`http://localhost:3001/users/${userId}`);
-  return NextResponse.json(res.json());
+  const data = await res.json();
+  return NextResponse.json(data);
 }

@@ -17,5 +17,18 @@ module.exports = {
     },
   },
   plugins: [daisyui],
+  daisyui: {
+    themes: [
+      "dark",
+      "forest",
+      "dracula",
+      "business",
+      "light",
+      "lofi",
+      "wireframe",
+      "winter",
+      "cyberpunk",
+    ],
+  },
 };
 

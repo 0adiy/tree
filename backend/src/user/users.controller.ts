@@ -10,13 +10,13 @@ export class UsersController {
 	constructor(private readonly usersService: UsersService) { }
 
 	@Get()
-	// @UseGuards(ClerkAuthGuard)
+	@UseGuards(ClerkAuthGuard)
 	async findAll(): Promise<User[]> {
 		return this.usersService.findAll();
 	}
 
 	@Get(':id')
-	// @UseGuards(ClerkAuthGuard)
+	@UseGuards(ClerkAuthGuard)
 	async findById(@Param('id') id: string): Promise<User> {
 		return this.usersService.findById(id);
 	}
@@ -28,7 +28,7 @@ export class UsersController {
 	}
 
 	@Put(':id')
-	// @UseGuards(ClerkAuthGuard)
+	@UseGuards(ClerkAuthGuard)
 	async update(@Param('id') id: string, @Body() updateUserDto: User): Promise<User> {
 		return this.usersService.update(id, updateUserDto);
 	}
